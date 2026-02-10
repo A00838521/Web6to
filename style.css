@@ -1,0 +1,83 @@
+/* Login */
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.login-container {
+  display: flex;
+  width: 50%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-container h2 {
+  margin-bottom: 1em;
+  font-size: 4em;
+}
+
+.login-container form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  justify-items: center;
+}
+
+.submit-button{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.background {
+  position: fixed;
+  width: 50%;
+  height: 100%;
+  top: 0%;
+  right: 0%;
+  background-image: url('images/background.jpg');
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
+
+.insta {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Dashboard */
+.logo {
+  background-image: url('images/logoTM.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding-top: 0px;
+  width: 200px;
+  height: 50px;
+  margin: 20px;
+  z-index: -1;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  z-index: 1;
+  top: 0%;
+  width: 100%;
+  height: 10%;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.projects-cards {
+  margin-top: 4em;
+  padding: 2em;
+}
