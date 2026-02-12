@@ -49,35 +49,17 @@
 }
 
 /* Dashboard */
-.logo {
-  background-image: url('images/logoTM.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  padding-top: 0px;
-  width: 200px;
-  height: 50px;
-  margin: 20px;
-  z-index: -1;
-}
-
-.nav {
-  display: flex;
-  align-items: center;
-}
-
-.navigation {
-  display: flex;
-  justify-content: space-between;
-  position: fixed;
-  z-index: 1;
-  top: 0%;
-  width: 100%;
-  height: 10%;
-  background-color: #f0f0f0;
-  border-bottom: 1px solid #e0e0e0;
+body {
+  padding-top: 3em;
 }
 
 .projects-cards {
-  margin-top: 4em;
   padding: 2em;
+}
+
+/* Dashboard */
+.chart-container {
+  position: relative;
+  height: 400px;
+  margin-bottom: 30px;
 }
