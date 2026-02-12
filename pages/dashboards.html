@@ -1,0 +1,174 @@
+<!-- filepath: /Users/opsystem/Documents/GitHub/Web6to/pages/dashboards.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <title>Dashboard</title>
+</head>
+<body>
+  <!-- NavBar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="../index.html">
+        <img src="../images/logoTM.png" alt="" height="24">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="../index.html">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="dashboards.html">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="help.html">Help</a>
+          </li>
+        </ul>
+        <nav class="navbar navbar-light bg-light">
+          <form class="container-fluid justify-content-start">
+            <a href="signin.html"><button class="btn btn-outline-secondary me-2" type="button">Sign In</button></a>
+            <a href="login.html"><button class="btn btn-outline-primary me-2" type="button">Log In</button></a>
+          </form>
+        </nav>
+      </div>
+    </div>
+  </nav>
+  <!-- End of NavBar -->
+
+  <!-- Dashboard Content -->
+  <div class="container-fluid mt-4">
+    <h1 class="mb-4">Dashboard</h1>
+    
+    <div class="row">
+      <!-- Line Chart -->
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h5>Monthly Sales</h5>
+          </div>
+          <div class="card-body">
+            <div class="chart-container">
+              <canvas id="lineChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bar Chart -->
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h5>Product Performance</h5>
+          </div>
+          <div class="card-body">
+            <div class="chart-container">
+              <canvas id="barChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <!-- Pie Chart -->
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h5>Market Share</h5>
+          </div>
+          <div class="card-body">
+            <div class="chart-container">
+              <canvas id="pieChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Doughnut Chart -->
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h5>Revenue Distribution</h5>
+          </div>
+          <div class="card-body">
+            <div class="chart-container">
+              <canvas id="doughnutChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End of Dashboard Content -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Line Chart
+    const lineCtx = document.getElementById('lineChart').getContext('2d');
+    new Chart(lineCtx, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+          label: 'Sales',
+          data: [12000, 19000, 3000, 5000, 2000, 3000],
+          borderColor: 'rgb(75, 192, 192)',
+          backgroundColor: 'rgba(75, 192, 192, 0.1)',
+          tension: 0.1
+        }]
+      },
+      options: { responsive: true, maintainAspectRatio: false }
+    });
+
+    // Bar Chart
+    const barCtx = document.getElementById('barChart').getContext('2d');
+    new Chart(barCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Product A', 'Product B', 'Product C', 'Product D'],
+        datasets: [{
+          label: 'Units Sold',
+          data: [65, 59, 80, 81],
+          backgroundColor: ['rgba(255, 99, 132, 0.7)', 'rgba(54, 162, 235, 0.7)', 'rgba(255, 206, 86, 0.7)', 'rgba(75, 192, 192, 0.7)']
+        }]
+      },
+      options: { responsive: true, maintainAspectRatio: false }
+    });
+
+    // Pie Chart
+    const pieCtx = document.getElementById('pieChart').getContext('2d');
+    new Chart(pieCtx, {
+      type: 'pie',
+      data: {
+        labels: ['Company A', 'Company B', 'Company C'],
+        datasets: [{
+          data: [30, 25, 45],
+          backgroundColor: [ 'rgba(255, 99, 132, 0.7)', 'rgba(54, 162, 235, 0.7)', 'rgba(255, 206, 86, 0.7)']
+        }]
+      },
+      options: { responsive: true, maintainAspectRatio: false }
+    });
+
+    // Doughnut Chart
+    const doughnutCtx = document.getElementById('doughnutChart').getContext('2d');
+    new Chart(doughnutCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Online', 'Retail', 'Wholesale'],
+        datasets: [{
+          data: [40, 35, 25],
+          backgroundColor: ['rgba(75, 192, 192, 0.7)', 'rgba(153, 102, 255, 0.7)', 'rgba(255, 159, 64, 0.7)']
+        }]
+      },
+      options: { responsive: true, maintainAspectRatio: false }
+    });
+  </script>
+</body>
+</html>
