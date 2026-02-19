@@ -11,26 +11,28 @@
   <div class="container">
     <div class="login-container">
       <h2>Sign In</h2>
-      <form action="../index.html">
+      <form id="signinForm">
         <div class="form-floating mb-3">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
           <label for="floatingInput">Email address</label>
         </div>
 
         <div class="form-floating mb-3">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-          <label for="floatingInput">Confirm Email</label>
+          <input type="email" class="form-control" id="floatingConfirm" placeholder="name@example.com" required>
+          <label for="floatingConfirm">Confirm Email</label>
         </div>
 
-        <div class="form-floating">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+        <div class="form-floating mb-3">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
           <label for="floatingPassword">Password</label>
         </div>
 
-        <div class="input-group flex-nowrap insta">
+        <div class="input-group flex-nowrap insta mb-3">
           <span class="input-group-text" id="addon-wrapping">@</span>
-          <input type="text" class="form-control" placeholder="Instagram" aria-label="Username" aria-describedby="addon-wrapping">
+          <input type="text" class="form-control" id="instagramInput" placeholder="Instagram" aria-label="Username" aria-describedby="addon-wrapping" required>
         </div>
+
+        <div id="errorMessage" class="alert alert-danger" style="display:none;"></div>
 
         <a href="login.html" class="text-center">Already have an account? Log In</a>
 
@@ -41,5 +43,53 @@
     </div>
   </div>
   <div class="background"></div>
+
+  <script>
+    document.getElementById('signinForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const email = document.getElementById('floatingInput').value;
+      const confirmEmail = document.getElementById('floatingConfirm').value;
+      const password = document.getElementById('floatingPassword').value;
+      const instagram = document.getElementById('instagramInput').value;
+      const errorMessage = document.getElementById('errorMessage');
+      
+      // Validar que los emails coincidan
+      if(email !== confirmEmail) {
+        errorMessage.textContent = 'Los emails no coinciden';
+        errorMessage.style.display = 'block';
+        return;
+      }
+      
+      // Obtener usuarios registrados
+      let users = JSON.parse(localStorage.getItem('users')) || [];
+      
+      // Validar que el email no esté registrado
+      if(users.some(user => user.email === email)) {
+        errorMessage.textContent = 'Este email ya está registrado';
+        errorMessage.style.display = 'block';
+        return;
+      }
+      
+      // Registrar nuevo usuario
+      users.push({
+        email: email,
+        password: password,
+        instagram: instagram,
+        registerDate: new Date().toISOString()
+      });
+      
+      localStorage.setItem('users', JSON.stringify(users));
+      
+      // Guardar sesión actual
+      localStorage.setItem('userSession', JSON.stringify({
+        email: email,
+        loginTime: new Date().toISOString()
+      }));
+      
+      // Redirigir a index.html
+      window.location.href = '../index.html';
+    });
+  </script>
 </body>
 </html>

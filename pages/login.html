@@ -11,16 +11,18 @@
   <div class="container">
     <div class="login-container">
       <h2>Log In</h2>
-      <form action="../index.html">
+      <form id="loginForm">
         <div class="form-floating mb-3">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
           <label for="floatingInput">Email address</label>
         </div>
 
-        <div class="form-floating">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+        <div class="form-floating mb-3">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
           <label for="floatingPassword">Password</label>
         </div>
+
+        <div id="errorMessage" class="alert alert-danger" style="display:none;"></div>
 
         <a href="signin.html" class="text-center pt-3">Don't have an account? Sign In</a>
 
@@ -31,5 +33,36 @@
     </div>
   </div>
   <div class="background"></div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const email = document.getElementById('floatingInput').value;
+      const password = document.getElementById('floatingPassword').value;
+      const errorMessage = document.getElementById('errorMessage');
+      
+      // Obtener usuarios registrados
+      let users = JSON.parse(localStorage.getItem('users')) || [];
+      
+      // Buscar usuario con ese email y contraseña
+      const user = users.find(u => u.email === email && u.password === password);
+      
+      if(!user) {
+        errorMessage.textContent = 'Email o contraseña incorrectos';
+        errorMessage.style.display = 'block';
+        return;
+      }
+      
+      // Guardar sesión
+      localStorage.setItem('userSession', JSON.stringify({
+        email: email,
+        loginTime: new Date().toISOString()
+      }));
+      
+      // Redirigir a index.html
+      window.location.href = '../index.html';
+    });
+  </script>
 </body>
 </html>

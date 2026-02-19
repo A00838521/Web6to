@@ -9,35 +9,15 @@
 </head>
 <body>
   <!-- NavBar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="../index.html">
-        <img src="../images/logoTM.png" alt="" height="24">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" href="index.html">Projects</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/dashboards.html">Dashboard</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/help.html">Help</a>
-          </li>
-        </ul>
-        <nav class="navbar navbar-light bg-light">
-          <form class="container-fluid justify-content-start">
-            <a href="pages/signin.html"><button class="btn btn-outline-secondary me-2" type="button">Sign In</button></a>
-            <a href="pages/login.html"><button class="btn btn-outline-primary me-2" type="button">Log In</button></a>
-          </form>
-        </nav>
-      </div>
-    </div>
-  </nav>
+  <div id="header"></div>
+  <script>
+    fetch('components/header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header').innerHTML = data;
+      })
+      .catch(error => console.error('Error loading header:', error));
+  </script>
   <!-- End of NavBar -->
 
   <!-- Projects -->
@@ -94,6 +74,23 @@
     </div>
   </div>
   <!-- End of Projects -->
+
+  <!-- Footer -->
+  <div id="footer"></div>
+  <script>
+    fetch('components/footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      })
+      .catch(error => console.error('Error loading footer:', error));
+  </script>
+  <!-- End of Footer -->
+
+  <script src="scripts/auth.js"></script>
+  <script>
+    checkSession();
+  </script>
 
 </body>
 </html>
