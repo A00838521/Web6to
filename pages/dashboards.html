@@ -11,35 +11,15 @@
 </head>
 <body>
   <!-- NavBar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="../index.html">
-        <img src="../images/logoTM.png" alt="" height="24">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="../index.html">Projects</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="dashboards.html">Dashboard</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="help.html">Help</a>
-          </li>
-        </ul>
-        <nav class="navbar navbar-light bg-light">
-          <form class="container-fluid justify-content-start">
-            <a href="signin.html"><button class="btn btn-outline-secondary me-2" type="button">Sign In</button></a>
-            <a href="login.html"><button class="btn btn-outline-primary me-2" type="button">Log In</button></a>
-          </form>
-        </nav>
-      </div>
-    </div>
-  </nav>
+  <div id="header"></div>
+  <script>
+    fetch('/components/header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header').innerHTML = data;
+      })
+      .catch(error => console.error('Error loading header:', error));
+  </script>
   <!-- End of NavBar -->
 
   <!-- Dashboard Content -->
@@ -108,6 +88,18 @@
   </div>
   <!-- End of Dashboard Content -->
 
+  <!-- Footer -->
+  <div id="footer"></div>
+  <script>
+    fetch('../components/footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      })
+      .catch(error => console.error('Error loading footer:', error));
+  </script>
+  <!-- End of Footer -->
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     // Line Chart
@@ -169,6 +161,10 @@
       },
       options: { responsive: true, maintainAspectRatio: false }
     });
+  </script>
+  <script src="scripts/auth.js"></script>
+  <script>
+    checkSession();
   </script>
 </body>
 </html>
