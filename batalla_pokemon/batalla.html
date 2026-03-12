@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batalla Pokémon</title>
+    <link rel="stylesheet" href="batalla.css">
+</head>
+<body>
+
+    <!-- ========== PANTALLA DE SELECCIÓN ========== -->
+    <div id="selection-screen" class="screen active">
+        <h1>⚔️ Simulador de Batalla Pokémon</h1>
+        <p class="subtitulo">Haz clic en dos Pokémon para elegirlos y luego ¡a pelear!</p>
+
+        <!-- Barra superior: slots de selección y botón -->
+        <div class="barra-seleccion">
+            <div class="slot slot-p1">
+                <div class="slot-titulo">Jugador 1</div>
+                <div class="slot-nombre" id="slot-p1-nombre">Sin elegir</div>
+            </div>
+            <button id="btn-pelear" disabled onclick="iniciarBatalla()">⚔️ ¡PELEAR!</button>
+            <div class="slot slot-p2">
+                <div class="slot-titulo">Jugador 2</div>
+                <div class="slot-nombre" id="slot-p2-nombre">Sin elegir</div>
+            </div>
+        </div>
+
+        <!-- Buscador -->
+        <input type="text" id="buscador" placeholder="🔍 Buscar Pokémon...">
+
+        <!-- Grid de Pokémon -->
+        <p id="loading-msg">⏳ Cargando Pokémon...</p>
+        <div id="pokemon-grid" class="pokemon-grid"></div>
+    </div>
+
+    <!-- ========== PANTALLA DE BATALLA ========== -->
+    <div id="battle-screen" class="screen">
+        <h2>⚔️ ¡Batalla en curso!</h2>
+
+        <div class="arena">
+            <!-- Carta Jugador 1 -->
+            <div class="pokemon-card lado-p1">
+                <h3 id="p1-name">Pokémon 1</h3>
+                <img id="p1-img" src="" alt="Pokémon 1">
+                <div class="hp-bar-container">
+                    <div id="p1-hp-bar" class="hp-bar"></div>
+                </div>
+                <p>HP: <span id="p1-hp-text">100</span>%</p>
+            </div>
+
+            <!-- Narrador central -->
+            <div id="narrator-box">
+                <p id="narrator-text">¡Preparando el combate!</p>
+            </div>
+
+            <!-- Carta Jugador 2 -->
+            <div class="pokemon-card lado-p2">
+                <h3 id="p2-name">Pokémon 2</h3>
+                <img id="p2-img" src="" alt="Pokémon 2">
+                <div class="hp-bar-container">
+                    <div id="p2-hp-bar" class="hp-bar"></div>
+                </div>
+                <p>HP: <span id="p2-hp-text">100</span>%</p>
+            </div>
+        </div>
+
+        <!-- Historial de movimientos -->
+        <div id="battle-log">
+            <h3>📋 Registro de la batalla</h3>
+            <ul id="log-list"></ul>
+        </div>
+    </div>
+
+    <!-- ========== PANTALLA GANADOR ========== -->
+    <div id="winner-screen" class="screen">
+        <div class="winner-container">
+            <h1>🏆 ¡GANADOR!</h1>
+            <h2 id="winner-name">---</h2>
+            <img id="winner-img" src="" alt="Ganador">
+            <br>
+            <button onclick="location.reload()">🔄 Nueva batalla</button>
+        </div>
+    </div>
+
+    <script src="batalla.js"></script>
+</body>
+</html>
